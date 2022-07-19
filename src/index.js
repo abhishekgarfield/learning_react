@@ -1,25 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Layout from "./pages/Layout";
+import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+import Nopage from "./pages/Nopage";
 
-function Car(props) {
-    return <li>I am a { props.brand }</li>;
+
+export default function App()
+{
+    return(
+
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element= {<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="blog" element={<Blog />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="*" element={<Nopage />} />
+            </Route>
+        </Routes>
+    </BrowserRouter>
+);
 }
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
 
-function Garage() {
-    const cars = [
-        {id: 1, brand: 'Ford'},
-        {id: 2, brand: 'BMW'},
-        {id: 3, brand: 'Audi'}
-    ];
-    return (
-        <>
-            <h1>Who lives in my garage?</h1>
-            <ul>
-                {cars.map((item) => <Car key={item.id} brand={item.brand} />)}
-            </ul>
-        </>
-    );
-}
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Garage />);
+
+
+
