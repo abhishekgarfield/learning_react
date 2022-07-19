@@ -1,30 +1,53 @@
+import { useState } from "react";
 import ReactDOM from "react-dom/client";
-import React, { useState } from "react";
-import Contact from "./pages/Contact"
 
-const Car= () =>
-{
-    const [car ,setCar]=useState
-    ({type : "suv",
+function Component1({ ty }) {
+    const [user, setUser] = useState("Jesse Hall");
 
-     brand:"mustang",
-     year:2021,
-        color:"red"});
-
-    const update = (car)=>{
-        const car1={...car,brand:"maruti",color:"pink"};
-        setCar(car1);
-    }
-
-    return(
+    return (
         <>
-            <p>this is a {car.type} and brand is {car.brand} of color {car.color} and year is {car.year}</p>
-            <button onClick={() =>update(car)}>change</button>
+            <h2>{`hi ${ty} ;`}</h2>
+            <h1>{`Hello ${user}!`}</h1>
+            <Component2 user={user} />
         </>
-    )
+    );
 }
 
-const root=ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Contact />);
-const more=ReactDOM.createRoot(document.getElementById("more"));
-more.render(<Car />);
+function Component2({ us }) {
+    return (
+        <>
+            <h1>Component 2</h1>
+            <Component3 user={us} />
+        </>
+    );
+}
+
+function Component3({ us }) {
+    return (
+        <>
+            <h1>Component 3</h1>
+            <Component4 user={us} />
+        </>
+    );
+}
+
+function Component4({ us }) {
+    return (
+        <>
+            <h1>Component 4</h1>
+            <Component5 user={us} />
+        </>
+    );
+}
+
+function Component5({ us }) {
+    return (
+        <>
+            <h1>Component 5</h1>
+            <h2>{`Hello ${us} again!`}</h2>
+        </>
+    );
+}
+const st=1;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Component1 ty={st} />);
