@@ -1,33 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Layout from "./pages/Layout";
-import Contact from "./pages/Contact";
-import Blog from "./pages/Blog";
-import Nopage from "./pages/Nopage";
+import ReactDOM from "react-dom/client";
+import React, { useState } from "react";
+import Contact from "./pages/Contact"
 
-
-export default function App()
+const Car= () =>
 {
+    const [car ,setCar]=useState
+    ({type : "suv",
+
+     brand:"mustang",
+     year:2021,
+        color:"red"});
+
+    const update = (car)=>{
+        const car1={...car,brand:"maruti",color:"pink"};
+        setCar(car1);
+    }
+
     return(
-
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element= {<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="blog" element={<Blog />} />
-                <Route path="contact" element={<Contact />} />
-                <Route path="*" element={<Nopage />} />
-            </Route>
-        </Routes>
-    </BrowserRouter>
-);
+        <>
+            <p>this is a {car.type} and brand is {car.brand} of color {car.color} and year is {car.year}</p>
+            <button onClick={() =>update(car)}>change</button>
+        </>
+    )
 }
+
 const root=ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
-
-
-
-
-
+root.render(<Contact />);
+const more=ReactDOM.createRoot(document.getElementById("more"));
+more.render(<Car />);
